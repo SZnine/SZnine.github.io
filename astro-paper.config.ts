@@ -21,7 +21,12 @@ export default defineAstroPaperConfig({
     search: "pagefind",
     toc: true,
   },
-  // 在这里添加自己的社交链接，如 { name: "github", url: "https://github.com/你的用户名" }。
-  socials: [],
+  socials: [
+    {
+      name: "github",
+      url: "https://github.com/SZnine",
+      linkTitle: "GitHub",
+    },
+  ],
   shareLinks: [],
 });
