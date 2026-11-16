@@ -5,13 +5,26 @@ import config from "@/config";
 
 export const BLOG_PATH = "src/content/posts";
 
+// CMS editors can save ISO timestamps as quoted YAML strings.
+const postDate = z
+  .union([z.date(), z.string().trim().min(1)])
+  .pipe(z.coerce.date());
+
+const optionalPostDate = z.preprocess(
+  value =>
+    value === null || (typeof value === "string" && value.trim() === "")
+      ? undefined
+      : value,
+  postDate.optional()
+);
+
 const posts = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: `./${BLOG_PATH}` }),
   schema: ({ image }) =>
     z.object({
       author: z.string().default(config.site.author),
-      pubDatetime: z.date(),
-      modDatetime: z.date().optional().nullable(),
+      pubDatetime: postDate,
+      modDatetime: optionalPostDate,
       title: z.string(),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),

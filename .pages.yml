@@ -1,28 +1,97 @@
 media:
-  input: src/media
-  output: /media
+  - name: images
+    label: 图片
+    input: public/images
+    output: /images
+    categories: [image]
+    rename: random
+
 content:
   - name: posts
-    label: Posts
+    label: 文章
     type: collection
-    path: src/posts
+    path: src/content/posts
+    format: yaml-frontmatter
+    subfolders: false
+    exclude: [".gitkeep", "**/*.mdx"]
+    filename:
+      template: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+      field: create
+    operations:
+      rename: false
+    view:
+      primary: title
+      fields: [title, pubDatetime, draft, tags]
+      sort: [pubDatetime, title]
+      search: [title, description]
+      default:
+        sort: pubDatetime
+        order: desc
     fields:
       - name: title
+        label: 标题
         type: string
-      - name: body
-        type: rich-text
-  - name: site
-    label: Site settings
-    type: file
-    path: src/_data/site.json
-    fields:
-      - name: title
-        type: string
+        required: true
       - name: description
+        label: 摘要
         type: text
-      - name: url
+        required: true
+        description: 显示在文章列表中的简短介绍。
+      - name: pubDatetime
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ssXXX"
+      - name: draft
+        label: 草稿
+        type: boolean
+        default: false
+        description: 开启后，文章不在网站展示。关闭后保存即可发布。
+      - name: featured
+        label: 首页精选
+        type: boolean
+        default: false
+      - name: tags
+        label: 标签
         type: string
-actions:
-  - name: deploy-site
-    label: Deploy site
-    workflow: pages-cms-action.yml
+        list: true
+        default: []
+      - name: body
+        label: 正文
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          media: images
+          switcher: true
+      - name: modDatetime
+        label: 更新日期
+        type: date
+        default: ""
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ssXXX"
+
+  - name: about
+    label: 关于
+    type: file
+    path: src/content/pages/about.md
+    format: yaml-frontmatter
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+      - name: body
+        label: 正文
+        type: rich-text
+        options:
+          format: markdown
+          media: images
+          switcher: true
+
+settings:
+  content:
+    merge: true

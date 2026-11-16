@@ -36,12 +36,12 @@ pnpm preview
 title: ""
 description: ""
 pubDatetime: 2026-11-16T00:00:00+08:00
-draft: true
+draft: false
 tags: []
 ---
 ```
 
-填写标题、摘要和正文，将 `pubDatetime` 改为实际发布日期。准备发布时将 `draft` 改为 `false`，然后提交并推送。
+填写标题、摘要和正文，将 `pubDatetime` 改为实际发布日期，然后提交并推送。暂存文章时将 `draft` 设为 `true`，准备发布时再改回 `false`。
 
 | 字段          | 用途                                        |
 | ------------- | ------------------------------------------- |
@@ -54,7 +54,7 @@ tags: []
 | `featured`    | 可选，`true` 时加入首页精选                 |
 | `hideToc`     | 可选，`true` 时隐藏文章目录                 |
 
-默认时区为 `Asia/Shanghai`。未来日期的文章需要在日期到来后重新构建才会发布。文件名参与文章网址，文章发布后尽量保持文件名稳定。
+默认时区为 `Asia/Shanghai`。日期支持 YAML 日期值和带引号的 ISO 日期字符串；可选的 `modDatetime` 可以留空。未来日期的文章需要在日期到来后重新构建才会发布。文件名参与文章网址，文章发布后保持文件名稳定。
 
 公开仓库中的草稿源文件仍然公开，`draft` 只控制网站展示。
 
@@ -68,26 +68,28 @@ tags: []
 
 ## 网页写作后台
 
-推荐接入 [Pages CMS](https://pagescms.org/docs/quick-start/)。它提供浏览器中的文章表单、富文本编辑和图片上传，将修改保存到 GitHub 仓库，沿用现有构建部署流程。
+已接入 [Pages CMS](https://app.pagescms.org/)，后台提供文章、关于和图片三个入口。
 
-接入步骤：
+1. 登录后打开 `SZnine/SZnine.github.io`，选择 `main` 分支。
+2. 在「文章」中新建或编辑文章，填写标题、摘要和正文。发布日期默认当前本地时间，更新日期按需填写，标签可自由添加多个。
+3. 在正文编辑器或「图片」中上传图片，保存位置为 `public/images/`，正文引用路径为 `/images/…`。
+4. 保存后，[GitHub Actions](https://github.com/SZnine/SZnine.github.io/actions) 自动构建并发布；部署成功后查看线上页面。
 
-1. 在仓库根目录添加 `.pages.yml`，将文章集合映射到 `src/content/posts/`。
-2. 字段对齐上表，正文使用 `body` 富文本字段和 Markdown 格式；图片输入目录设为 `public/images`，输出路径设为 `/images`。
-3. 设置 `settings.content.merge: true`，保留未纳入表单的已有 frontmatter 字段。
-4. 打开 [app.pagescms.org](https://app.pagescms.org/)，通过 GitHub 登录，安装 GitHub App 并授权 `SZnine/SZnine.github.io`，选择 `main` 分支。
-5. 保存文章后查看 GitHub Actions；构建部署完成后检查线上页面。
+草稿默认关闭，保存文章即进入发布流程；需要暂存时打开「草稿」。新文章默认使用时间戳文件名，避免中文标题生成空文件名。首次创建时可改为英文短名称；之后编辑标题保持原文件名与网址不变。
 
-上述配置与授权待接入。复杂 MDX 组件内容使用源码编辑；Pages CMS 的富文本输出为 Markdown 或 HTML，MDX 通过代码字段编辑。
+正文使用 Markdown 富文本编辑器，可切换到源码模式。含组件的 `.mdx` 文件在本地编辑，不纳入当前后台文章列表。「关于」入口只编辑正文，保留已有页面元数据。
 
-配置参考：[内容字段](https://pagescms.org/docs/configuration/content/) · [媒体路径](https://pagescms.org/docs/configuration/media/) · [保留已有字段](https://pagescms.org/docs/configuration/settings/) · [富文本](https://pagescms.org/docs/configuration/fields/rich-text/) · [MDX 代码字段](https://pagescms.org/docs/configuration/fields/code/)
+后台配置位于 [`.pages.yml`](./.pages.yml)，文章目录对应 `src/content/posts/`。`settings.content.merge: true` 保留未纳入表单的 frontmatter 字段，日期 schema 同时兼容 CMS 写入的字符串与本地 YAML 日期值。
+
+配置参考：[内容字段](https://pagescms.org/docs/configuration/content/) · [文件名](https://pagescms.org/docs/configuration/content/filename/) · [日期](https://pagescms.org/docs/configuration/fields/date/) · [媒体路径](https://pagescms.org/docs/configuration/media/) · [保留已有字段](https://pagescms.org/docs/configuration/settings/)
 
 ## 常用维护位置
 
 | 文件或目录                                    | 用途                                                   |
 | --------------------------------------------- | ------------------------------------------------------ |
 | `astro-paper.config.ts`                       | 站名、描述、作者、正式网址、语言、时区、功能与社交链接 |
-| `src/content/posts/`                          | 文章，目前仅保留目录占位文件 `.gitkeep`                |
+| `src/content/posts/`                          | Markdown / MDX 文章                                    |
+| `.pages.yml`                                  | Pages CMS 的文章、关于页和图片配置                     |
 | `src/content/pages/about.md`                  | 关于页正文                                             |
 | `src/pages/index.astro`                       | 首页内容与文章入口                                     |
 | `src/pages/projects.astro`                    | 项目页正文                                             |
