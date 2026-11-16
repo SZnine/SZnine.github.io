@@ -1,0 +1,81 @@
+---
+title: 用 Markdown 维护这个博客
+description: 示例文章 · 认识文章目录、基础信息和发布流程，从修改第一篇文章开始维护自己的 AstroPaper 站点。
+pubDatetime: 2026-11-16T00:00:00+08:00
+featured: false
+draft: false
+tags:
+  - 示例文章
+  - Astro
+  - 博客搭建
+---
+
+import ResponsiveTable from "@/components/ResponsiveTable.astro";
+
+> [!NOTE] 示例文章
+> 这是一篇可替换的入门示例，同时演示 MDX 组件、代码块、目录和响应式表格。路径对应当前博客源码。
+
+## 先找到内容的位置
+
+日常写作主要发生在 `src/content/posts/`。新建一个 `.md` 文件就可以写普通文章，需要使用组件时则使用 `.mdx`。站点名称、作者、网址和功能开关集中在根目录的 `astro-paper.config.ts`，不需要每篇文章重复修改。
+
+下面的表格由主题提供的 `ResponsiveTable` 组件包裹。在窄屏幕上，较宽的表格可以独立横向滚动，正文仍保持正常宽度。
+
+<ResponsiveTable variant="striped">
+  <table>
+    <thead>
+      <tr><th>位置</th><th>主要用途</th><th>编辑时关注什么</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>src/content/posts/</td><td>Markdown 与 MDX 文章</td><td>标题、日期、描述和标签</td></tr>
+      <tr><td>src/content/pages/about.md</td><td>关于页面</td><td>个人介绍与写作方向</td></tr>
+      <tr><td>astro-paper.config.ts</td><td>站点公共配置</td><td>网址、语言、时区和功能开关</td></tr>
+    </tbody>
+  </table>
+</ResponsiveTable>
+
+## 写好文章开头的信息
+
+正文前面的一段 YAML 叫作 frontmatter，用于说明这篇文章的属性。下面是一份可以修改的起点：
+
+```yaml
+---
+title: 第一次整理 Agent 执行记录
+description: 记录一个具体问题、实现过程与验证方式。
+pubDatetime: 2026-11-16T00:00:00+08:00
+featured: false
+draft: true
+tags:
+  - Agent
+  - 工程实践
+---
+```
+
+写作过程中先保留 `draft: true`。准备发布时改为 `false`，并确认日期、描述和标签与正文一致。描述用于文章列表，应让读者知道这篇文章解决什么问题，不必重复标题。
+
+## 让正文便于阅读
+
+文章标题由页面展示，正文从二级标题开始。一个小节围绕一个问题展开；操作步骤使用有序列表，需要比较多个选项时再使用表格。代码块注明语言，便于高亮，也方便读者复制和检查。
+
+普通文字和代码使用 Markdown 即可。只有在表格、交互演示等内容确实需要组件时，再使用 MDX。本文开头导入了主题组件，并在正文中实际使用，因此它也是一个可参考的 MDX 文件。
+
+## 预览和正式构建分开检查
+
+在项目目录中运行以下命令，可以边写边预览：
+
+```bash
+npm run dev
+```
+
+发布之前，再生成一次正式产物并打开预览：
+
+```bash
+npm run build
+npm run preview
+```
+
+当前构建流程会生成搜索索引，所以搜索也要在正式构建后检查。顺手打开文章链接、点击目录与标签，再用窄屏幕看一次代码和表格，就能发现不少只在阅读时出现的问题。
+
+## 保留可修改的源码
+
+将文章、配置和必要的静态资源一起提交到 Git。以后修改文章时更新修订日期，并在正文中说明影响理解的重要变化。部署方式可以调整，持续维护的内容与修改记录应当始终保留。
