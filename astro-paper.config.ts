@@ -4,7 +4,7 @@ export default defineAstroPaperConfig({
   site: {
     url: "https://sznine.github.io/",
     title: "Koi · 技术手记",
-    description: "记录 AI 应用、Agent 开发与工程实践中的问题、实现和思考。",
+    description: "",
     author: "Koi",
     ogImage: "default-og.jpg",
     lang: "zh-CN",

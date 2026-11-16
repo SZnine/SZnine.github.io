@@ -1,36 +1,15 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import config from "@/config";
-const locale = Astro.currentLocale ?? config.site.lang;
 ---
 
-<Layout title={`项目 | ${config.site.title}`} description="记录项目的目标、实现方式与关键取舍。">
+<Layout title={`项目 | ${config.site.title}`}>
   <Header />
   <Breadcrumb />
-  <Main pageTitle="项目" pageDesc="记录项目的目标、实现方式与关键取舍。" class="app-prose">
-    <h2>这个博客</h2>
-    <p>以 Astro + AstroPaper 为基础，整理文章、代码与思考。这是这里的第一个项目。</p>
-    <h3>目标</h3>
-    <p>给技术内容一个稳定的阅读入口，让文章便于查找，也便于持续修改。</p>
-    <h3>实现</h3>
-    <ul>
-      <li>使用官方 AstroPaper 的默认布局、字体、配色和页面组件。</li>
-      <li>通过 Markdown / MDX 维护文章和关于页。</li>
-      <li>支持文章目录、标签、归档、RSS 与 Pagefind 文章搜索。</li>
-      <li>构建为静态网站，源码可以迁移到其他静态托管平台。</li>
-    </ul>
-    <h3>相关入口</h3>
-    <ul>
-      <li><a href={getRelativeLocaleUrl(locale, "posts/writing-with-markdown")}>用 Markdown 维护这个博客</a></li>
-      <li><a href="https://github.com/satnaing/astro-paper" target="_blank" rel="noopener noreferrer">AstroPaper 官方源码</a></li>
-    </ul>
-    <hr />
-    <p>后续项目会在这里补上目标、演示和实现记录。</p>
-  </Main>
+  <Main pageTitle="项目" class="app-prose" />
   <Footer />
 </Layout>
