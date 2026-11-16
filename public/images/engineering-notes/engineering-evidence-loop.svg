@@ -1,0 +1,137 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="640"
+  height="682"
+  viewBox="0 0 640 682"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">工程围绕证据形成反馈</title>
+  <desc id="desc">
+    任务与验收产生样本判据和高风险验证任务。调试与回归集用于实验和日常检查，独立验收集用于最终检验。证据支持后实现与集成，评测失败回到实现，通过后试点与运行，真实失败补入回归集。
+  </desc>
+  <defs>
+    <marker
+      id="arrow"
+      markerWidth="8"
+      markerHeight="8"
+      refX="6"
+      refY="4"
+      orient="auto"
+    >
+      <path
+        d="M0 0 L8 4 L0 8"
+        fill="none"
+        stroke="#006cac"
+        stroke-width="1.4"
+      />
+    </marker>
+    <marker
+      id="gray-arrow"
+      markerWidth="8"
+      markerHeight="8"
+      refX="6"
+      refY="4"
+      orient="auto"
+    >
+      <path
+        d="M0 0 L8 4 L0 8"
+        fill="none"
+        stroke="#7c8790"
+        stroke-width="1.4"
+      />
+    </marker>
+  </defs>
+  <rect width="640" height="682" fill="#fdfdfd" />
+  <g
+    font-family="Noto Sans CJK SC, PingFang SC, Microsoft YaHei, sans-serif"
+    fill="#282728"
+  >
+    <text x="24" y="43" font-size="26" font-weight="700">
+      工程围绕证据形成反馈
+    </text>
+    <g fill="none" stroke="#006cac" stroke-width="2">
+      <path d="M430 156 V196" marker-end="url(#arrow)" />
+      <path d="M284 122 H120 V196" marker-end="url(#arrow)" />
+      <path d="M216 334 H248 V238 H276" marker-end="url(#arrow)" />
+      <path d="M430 272 V312" marker-end="url(#arrow)" />
+      <path d="M430 388 V428" marker-end="url(#arrow)" />
+      <path d="M216 420 H248 V470 H276" marker-end="url(#arrow)" />
+      <path d="M430 504 V544" marker-end="url(#arrow)" />
+      <path d="M284 586 H12 V334 H16" marker-end="url(#arrow)" />
+      <path
+        d="M576 470 H612 V354 H584"
+        stroke="#7c8790"
+        stroke-dasharray="6 5"
+        marker-end="url(#gray-arrow)"
+      />
+    </g>
+    <rect
+      x="24"
+      y="204"
+      width="192"
+      height="300"
+      rx="4"
+      fill="#eef5f9"
+      stroke="#006cac"
+      stroke-width="1.5"
+    />
+    <text x="120" y="244" text-anchor="middle" font-size="24" font-weight="700">
+      样本与评分
+    </text>
+    <text x="120" y="274" text-anchor="middle" font-size="17">
+      统一上下文与版本
+    </text>
+    <path d="M44 290 H196" stroke="#b8cfde" />
+    <text x="120" y="323" text-anchor="middle" font-size="21" fill="#006cac">
+      调试 / 回归集
+    </text>
+    <text x="120" y="351" text-anchor="middle" font-size="17">
+      实验与日常回归
+    </text>
+    <path d="M44 374 H196" stroke="#b8cfde" />
+    <text x="120" y="408" text-anchor="middle" font-size="21">
+      独立验收集
+    </text>
+    <text x="120" y="438" text-anchor="middle" font-size="17">
+      保留作最终检验
+    </text>
+    <text x="120" y="478" text-anchor="middle" font-size="17" fill="#59636d">
+      近似样本不跨集
+    </text>
+    <g fill="#fdfdfd" stroke="#9aa4ae" stroke-width="1.5">
+      <rect x="284" y="88" width="292" height="68" rx="4" />
+      <rect x="284" y="204" width="292" height="68" rx="4" />
+      <rect x="284" y="320" width="292" height="68" rx="4" />
+      <rect x="284" y="436" width="292" height="68" rx="4" />
+      <rect x="284" y="552" width="292" height="68" rx="4" />
+    </g>
+    <text x="430" y="117" text-anchor="middle" font-size="24" font-weight="700">
+      任务与验收
+    </text>
+    <text x="430" y="143" text-anchor="middle" font-size="18" fill="#59636d">
+      谁用 · 范围 · 达标条件
+    </text>
+    <text x="430" y="233" text-anchor="middle" font-size="24">高风险验证</text>
+    <text x="430" y="259" text-anchor="middle" font-size="18" fill="#59636d">
+      PoC、原型或已有证据
+    </text>
+    <text x="444" y="302" font-size="18" fill="#59636d">证据支持</text>
+    <text x="430" y="362" text-anchor="middle" font-size="24">实现与集成</text>
+    <text x="430" y="478" text-anchor="middle" font-size="24">评测与验收</text>
+    <rect x="585" y="394" width="48" height="29" fill="#fdfdfd" />
+    <text x="609" y="415" text-anchor="middle" font-size="18" fill="#59636d">
+      失败
+    </text>
+    <text x="444" y="534" font-size="18" fill="#59636d">通过</text>
+    <text x="430" y="581" text-anchor="middle" font-size="24">试点 → 运行</text>
+    <text x="430" y="607" text-anchor="middle" font-size="18" fill="#59636d">
+      在真实流程中验证
+    </text>
+    <text x="144" y="547" font-size="19" fill="#006cac">失败补入</text>
+    <text x="144" y="574" font-size="19" fill="#006cac">回归集</text>
+    <text x="320" y="661" text-anchor="middle" font-size="22">
+      评测从需求开始，失败回到样本与实现。
+    </text>
+  </g>
+</svg>
